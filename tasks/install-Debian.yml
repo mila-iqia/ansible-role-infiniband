@@ -1,0 +1,6 @@
+---
+- name: Install MLNX_OFED packages for Debian OS family
+  ansible.builtin.package:
+    name:
+      - mlnx-ofed-kernel-dkms
+      - mlnx-ofed-kernel-utils

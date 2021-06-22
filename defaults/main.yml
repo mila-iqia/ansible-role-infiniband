@@ -1,0 +1,30 @@
+---
+# Default apt repository
+mlnx_ofed_apt_repository: 'deb https://linux.mellanox.com/public/repo/mlnx_ofed/latest/ubuntu18.04/amd64/ ./'
+
+# Default yum/dnf repository
+mlnx_ofed_yum_repository: 'https://linux.mellanox.com/public/repo/mlnx_ofed/latest/rhel8.3/$basearch/'
+
+# Mellanox GPG Key
+mlnx_ofed_gpg_key: 'http://www.mellanox.com/downloads/ofed/RPM-GPG-KEY-Mellanox'
+
+# IPoIB interfaces
+#
+# Define the list of interfaces to configure with IPoIB. Each item of the list
+# must define the interface name (iface), the offset from the default ipv4
+# address and the CIDR prefix
+#
+# To compute the offset, use:
+#
+# $ python3 <<EOF
+# import ipaddress
+# source_net='192.168.121.0'
+# target_net='10.0.128.0'
+# offset=(int(ipaddress.ip_address(source_net))-int(ipaddress.ip_address(target_net)))
+# print(f"offset: -{offset}")
+# EOF
+#
+mlnx_ofed_ipoib_interfaces:
+  - iface: 'ib0'
+    offset: -3064461568
+    prefix: 17

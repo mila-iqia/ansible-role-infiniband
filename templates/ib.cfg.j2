@@ -1,0 +1,15 @@
+{#
+1. Transform default ipv4 address to IPoIB ipv4 address with ipmath:
+   e.g. 192.168.121.2 -> 10.0.128.2
+2. Add the prefix to the string: 10.0.128.2/17
+3. Validate the host/prefix with ipv4 filter
+#}
+{% set ipoib_host = (ansible_facts['default_ipv4'].address |
+    ansible.netcommon.ipmath(item.offset) + '/' + item.prefix | string) |
+    ansible.netcommon.ipv4('host/prefix') -%}
+auto {{ item.iface }}
+iface {{ item.iface }} inet static
+  address   {{ ipoib_host | ansible.netcommon.ipaddr('address') }}
+  network   {{ ipoib_host | ansible.netcommon.ipaddr('network') }}
+  netmask   {{ ipoib_host | ansible.netcommon.ipaddr('netmask') }}
+  broadcast {{ ipoib_host | ansible.netcommon.ipaddr('broadcast') }}

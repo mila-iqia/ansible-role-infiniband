@@ -1,0 +1,7 @@
+---
+- name: Restart interface
+  command: bash -c "ifdown {{ item.item.iface }} && ifup {{ item.item.iface }}"
+  loop: "{{ configure_ipoib.results }}"
+  loop_control:
+    label: "Restart interface {{ item.item.iface }}"
+  when: item.changed

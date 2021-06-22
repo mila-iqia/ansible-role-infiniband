@@ -1,0 +1,17 @@
+---
+- name: Configure repositories
+  ansible.builtin.include_tasks:
+    file: "repositories-{{ ansible_facts['os_family'] }}.yml"
+
+- name: Install distro MLNX_OFED packages
+  ansible.builtin.include_tasks:
+    file: "install-{{ ansible_facts['os_family'] }}.yml"
+
+- name: Install common MLNX_OFED packages
+  ansible.builtin.package:
+    name:
+      - infiniband-diags
+
+- name: Configure IPoIB interfaces
+  ansible.builtin.include_tasks:
+    file: "configure-{{ ansible_facts['os_family'] }}.yml"

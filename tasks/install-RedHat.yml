@@ -1,0 +1,5 @@
+---
+- name: Install MLNX_OFED packages for Red Hat OS family
+  ansible.builtin.package:
+    name:
+      - kmod-mlnx-ofa_kernel

@@ -1,0 +1,11 @@
+---
+- name: Install Mellanox GPG-KEY
+  ansible.builtin.apt_key:
+    url: "{{ mlnx_ofed_gpg_key }}"
+    keyring: /etc/apt/trusted.gpg.d/mlnx_ofed.gpg
+
+- name: Configure MLNX_OFED repository
+  ansible.builtin.copy:
+    content: "{{ mlnx_ofed_apt_repository }}\n"
+    dest: /etc/apt/sources.list.d/mlnx_ofed.list
+    mode: 0644

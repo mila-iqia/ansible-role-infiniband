@@ -1,0 +1,22 @@
+{#
+1. Transform default ipv4 address to IPoIB ipv4 address with ipmath:
+   e.g. 192.168.121.2 -> 10.0.128.2
+2. Add the prefix to the string: 10.0.128.2/17
+3. Validate the host/prefix with ipv4 filter
+#}
+{% set ipoib_host = (ansible_facts['default_ipv4'].address |
+    ansible.netcommon.ipmath(item.offset) + '/' + item.prefix | string) |
+    ansible.netcommon.ipv4('host/prefix') -%}
+DEVICE={{ item.iface }}
+NAME={{ item.iface }}
+TYPE=InfiniBand
+IPADDR={{ ipoib_host | ansible.netcommon.ipaddr('address') }}
+NETMASK={{ ipoib_host | ansible.netcommon.ipaddr('netmask') }}
+NETWORK={{ ipoib_host | ansible.netcommon.ipaddr('network') }}
+BROADCAST={{ ipoib_host | ansible.netcommon.ipaddr('broadcast') }}
+BOOTPROTO=static
+ONBOOT=yes
+IPV4_FAILURE_FATAL=yes
+IPV6INIT=no
+MTU=65520
+CONNECTED_MODE=yes
