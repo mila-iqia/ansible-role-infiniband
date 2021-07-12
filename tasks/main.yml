@@ -7,6 +7,12 @@
   ansible.builtin.include_tasks:
     file: "install-{{ ansible_facts['os_family'] }}.yml"
 
+- name: Ensure openibd.service is started
+  ansible.builtin.systemd:
+    name: openibd.service
+    state: started
+  when: packages_install.changed
+
 - name: Install common MLNX_OFED packages
   ansible.builtin.package:
     name:

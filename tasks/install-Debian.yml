@@ -4,3 +4,9 @@
     name:
       - mlnx-ofed-kernel-dkms
       - mlnx-ofed-kernel-utils
+      - linux-headers-{{ ansible_facts['kernel'] }}
+  register: packages_install
+
+- name: Build and install the modules with DKMS
+  ansible.builtin.command: dkms autoinstall
+  when: packages_install.changed
