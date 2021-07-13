@@ -28,3 +28,6 @@ mlnx_ofed_ipoib_interfaces:
   - iface: 'ib0'
     offset: -3064461568
     prefix: 17
+
+# Name of the kernel headers package
+mlnx_ofed_kernel_headers_package: 'linux-headers'
