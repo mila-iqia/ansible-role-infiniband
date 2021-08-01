@@ -8,5 +8,5 @@
   register: packages_install
 
 - name: Build and install the modules with DKMS
-  ansible.builtin.command: dkms autoinstall
+  ansible.builtin.command: dkms autoinstall  # noqa 503 no-handler
   when: packages_install.changed

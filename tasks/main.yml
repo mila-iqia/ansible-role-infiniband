@@ -8,7 +8,7 @@
     file: "install-{{ ansible_facts['os_family'] }}.yml"
 
 - name: Ensure openibd.service is started
-  ansible.builtin.systemd:
+  ansible.builtin.systemd:  # noqa 503 no-handler
     name: openibd.service
     state: started
   when: packages_install.changed
