@@ -6,6 +6,7 @@
       - mlnx-ofed-kernel-utils
       - "{{ mlnx_ofed_kernel_headers_package }}-{{ ansible_facts['kernel'] }}"
   register: packages_install
+  notify: "Ensure openibd.service is started"
 
 - name: Build and install the modules with DKMS
   ansible.builtin.command: dkms autoinstall  # noqa 503 no-handler

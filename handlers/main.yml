@@ -5,3 +5,8 @@
   loop_control:
     label: "Restart interface {{ item.item.iface }}"
   when: item.changed
+
+- name: Ensure openibd.service is started
+  ansible.builtin.systemd:
+    name: openibd.service
+    state: started

@@ -3,3 +3,4 @@
   ansible.builtin.package:
     name:
       - kmod-mlnx-ofa_kernel
+  notify: "Ensure openibd.service is started"

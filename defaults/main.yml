@@ -31,3 +31,12 @@ mlnx_ofed_ipoib_interfaces:
 
 # Name of the kernel headers package
 mlnx_ofed_kernel_headers_package: 'linux-headers'
+
+# Default to configure the repos and install the kernel modules.
+#
+# Some appliances like the NVIDIA DGX run their own software stack. When an
+# appliance already manages the installation of the Mellanox OFED drivers, there
+# is no need to configure additional repositories or to install the drivers. In
+# such cases, the parameters below can be set to False in the host inventory.
+mlnx_ofed_configure_repos: True
+mlnx_ofed_install_kernel_modules: True

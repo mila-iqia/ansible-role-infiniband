@@ -2,21 +2,20 @@
 - name: Configure repositories
   ansible.builtin.include_tasks:
     file: "repositories-{{ ansible_facts['os_family'] }}.yml"
+  when: mlnx_ofed_configure_repos
 
-- name: Install distro MLNX_OFED packages
+- name: Install MLNX_OFED kernel modules
   ansible.builtin.include_tasks:
     file: "install-{{ ansible_facts['os_family'] }}.yml"
-
-- name: Ensure openibd.service is started
-  ansible.builtin.systemd:  # noqa 503 no-handler
-    name: openibd.service
-    state: started
-  when: packages_install.changed
+  when: mlnx_ofed_install_kernel_modules
 
 - name: Install common MLNX_OFED packages
   ansible.builtin.package:
     name:
       - infiniband-diags
+
+- name: Flush handlers
+  meta: flush_handlers
 
 - name: Configure IPoIB interfaces
   ansible.builtin.include_tasks:
