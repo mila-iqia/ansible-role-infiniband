@@ -20,3 +20,4 @@
 - name: Configure IPoIB interfaces
   ansible.builtin.include_tasks:
     file: "configure-{{ ansible_facts['os_family'] }}.yml"
+  when: infiniband_ipoib_interfaces is defined

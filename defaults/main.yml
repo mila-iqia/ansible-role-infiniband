@@ -24,10 +24,10 @@ infiniband_gpg_key: 'http://www.mellanox.com/downloads/ofed/RPM-GPG-KEY-Mellanox
 # print(f"offset: -{offset}")
 # EOF
 #
-infiniband_ipoib_interfaces:
-  - iface: 'ib0'
-    offset: -3064461568
-    prefix: 17
+# infiniband_ipoib_interfaces:
+#   - iface: 'ib0'
+#     offset: -3064461568
+#     prefix: 17
 
 # Name of the kernel headers package
 infiniband_kernel_headers_package: 'linux-headers'
