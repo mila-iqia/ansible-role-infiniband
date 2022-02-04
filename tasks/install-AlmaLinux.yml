@@ -1,0 +1,6 @@
+---
+- name: Install MLNX_OFED packages for AlmaLinux OS family
+  ansible.builtin.package:
+    name:
+     - kmod-mlnx-ofa_kernel
+  notify: "Ensure openibd.service is started"
