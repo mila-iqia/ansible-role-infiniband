@@ -1,14 +1,14 @@
 ---
-- name: Install Mellanox GPG-KEY
+- name: Install GPG-KEY
   ansible.builtin.rpm_key:
-    key: "{{ mlnx_ofed_gpg_key }}"
+    key: "{{ infiniband_gpg_key }}"
     state: present
 
-- name: Configure MLNX_OFED repository
+- name: Configure InfiniBand repository
   ansible.builtin.yum_repository:
-    name: mlnx_ofed
-    baseurl: "{{ mlnx_ofed_yum_repository }}"
-    description: "MLNX_OFED"
+    name: infiniband
+    baseurl: "{{ infiniband_yum_repository }}"
+    description: "InfiniBand repository"
     enabled: True
     gpgcheck: True
-    gpgkey: "{{ mlnx_ofed_gpg_key }}"
+    gpgkey: "{{ infiniband_gpg_key }}"

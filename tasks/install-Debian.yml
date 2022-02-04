@@ -4,7 +4,7 @@
     name:
       - mlnx-ofed-kernel-dkms
       - mlnx-ofed-kernel-utils
-      - "{{ mlnx_ofed_kernel_headers_package }}-{{ ansible_facts['kernel'] }}"
+      - "{{ infiniband_kernel_headers_package }}-{{ ansible_facts['kernel'] }}"
   register: packages_install
   notify: "Ensure openibd.service is started"
 

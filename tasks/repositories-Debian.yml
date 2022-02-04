@@ -1,13 +1,13 @@
 ---
-- name: Install Mellanox GPG-KEY
+- name: Install GPG-KEY
   ansible.builtin.apt_key:
-    url: "{{ mlnx_ofed_gpg_key }}"
-    keyring: /etc/apt/trusted.gpg.d/mlnx_ofed.gpg
+    url: "{{ infiniband_gpg_key }}"
+    keyring: /etc/apt/trusted.gpg.d/infiniband.gpg
 
-- name: Configure MLNX_OFED repository
+- name: Configure InfiniBand repository
   ansible.builtin.copy:
-    content: "{{ mlnx_ofed_apt_repository }}\n"
-    dest: /etc/apt/sources.list.d/mlnx_ofed.list
+    content: "{{ infiniband_apt_repository }}\n"
+    dest: /etc/apt/sources.list.d/infiniband.list
     mode: 0644
 
 - name: "Update repository cache"

@@ -4,7 +4,7 @@
     path: /etc/network/interfaces
     line: source /etc/network/interfaces.d/{{ item.iface }}.cfg
     insertbefore: BOF
-  loop: "{{ mlnx_ofed_ipoib_interfaces | sort(reverse=True, attribute='iface') }}"
+  loop: "{{ infiniband_ipoib_interfaces | sort(reverse=True, attribute='iface') }}"
   loop_control:
     index_var: idx
     label: "Source interface file for {{ item.iface }}"
@@ -13,7 +13,7 @@
   ansible.builtin.template:
     src: ib.cfg.j2
     dest: /etc/network/interfaces.d/{{ item.iface }}.cfg
-  loop: "{{ mlnx_ofed_ipoib_interfaces }}"
+  loop: "{{ infiniband_ipoib_interfaces }}"
   loop_control:
     index_var: idx
     label: "Configure {{ item.iface }}"

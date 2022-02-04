@@ -1,12 +1,12 @@
 ---
 # Default apt repository
-mlnx_ofed_apt_repository: 'deb https://linux.mellanox.com/public/repo/mlnx_ofed/latest/ubuntu18.04/amd64/ ./'
+infiniband_apt_repository: 'deb https://linux.mellanox.com/public/repo/infiniband/latest/ubuntu18.04/amd64/ ./'
 
 # Default yum/dnf repository
-mlnx_ofed_yum_repository: 'https://linux.mellanox.com/public/repo/mlnx_ofed/latest/rhel8.3/$basearch/'
+infiniband_yum_repository: 'https://linux.mellanox.com/public/repo/infiniband/latest/rhel8.3/$basearch/'
 
 # Mellanox GPG Key
-mlnx_ofed_gpg_key: 'http://www.mellanox.com/downloads/ofed/RPM-GPG-KEY-Mellanox'
+infiniband_gpg_key: 'http://www.mellanox.com/downloads/ofed/RPM-GPG-KEY-Mellanox'
 
 # IPoIB interfaces
 #
@@ -24,13 +24,13 @@ mlnx_ofed_gpg_key: 'http://www.mellanox.com/downloads/ofed/RPM-GPG-KEY-Mellanox'
 # print(f"offset: -{offset}")
 # EOF
 #
-mlnx_ofed_ipoib_interfaces:
+infiniband_ipoib_interfaces:
   - iface: 'ib0'
     offset: -3064461568
     prefix: 17
 
 # Name of the kernel headers package
-mlnx_ofed_kernel_headers_package: 'linux-headers'
+infiniband_kernel_headers_package: 'linux-headers'
 
 # Default to configure the repos and install the kernel modules.
 #
@@ -38,5 +38,5 @@ mlnx_ofed_kernel_headers_package: 'linux-headers'
 # appliance already manages the installation of the Mellanox OFED drivers, there
 # is no need to configure additional repositories or to install the drivers. In
 # such cases, the parameters below can be set to False in the host inventory.
-mlnx_ofed_configure_repos: True
-mlnx_ofed_install_kernel_modules: True
+infiniband_configure_repos: True
+infiniband_install_kernel_modules: True
