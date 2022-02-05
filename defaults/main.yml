@@ -40,3 +40,13 @@ infiniband_kernel_headers_package: 'linux-headers'
 # such cases, the parameters below can be set to False in the host inventory.
 infiniband_configure_repos: True
 infiniband_install_kernel_modules: True
+
+# Configure Mellanox HCAs
+# The pci_bus must match the value in /sys/bus/pci/devices/
+# e.g. /sys/bus/pci/devices/0000:41:00.0/
+#
+# infiniband_hca_devices:
+#   - device: mlx5_0
+#     pci_bus: '0000:41:00.0'
+#     sriov_en: True
+#     num_of_vfs: 8

@@ -1,0 +1,17 @@
+---
+- name: Query current configuration of the IB device(s)
+  ansible.utils.cli_parse:
+    command: mstconfig query
+    parser:
+      name: ansible.netcommon.native
+    set_fact: mstconfig_query
+
+- name: Configure the IB device(s)
+  ansible.builtin.command: >
+    mstconfig -d {{ item.pci_bus }} --yes set
+      SRIOV_EN={{ item.sriov_en | bool }}
+      NUM_OF_VFS={{ item.num_of_vfs | int }}
+  loop: "{{ infiniband_hca_devices }}"
+  when: (mstconfig_query[item.pci_bus].sriov_en | bool != item.sriov_en | bool) or
+        (mstconfig_query[item.pci_bus].num_of_vfs | int != item.num_of_vfs | int)
+  notify: Reboot to load new configurations

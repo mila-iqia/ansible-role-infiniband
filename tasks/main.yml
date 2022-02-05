@@ -13,6 +13,12 @@
   ansible.builtin.package:
     name:
       - infiniband-diags
+      - mstflint
+
+- name: Configure Mellanox HCAs
+  ansible.builtin.include_tasks:
+    file: "configure_hca-{{ ansible_facts['os_family'] }}.yml"
+  when: infiniband_hca_devices is defined
 
 - name: Flush handlers
   meta: flush_handlers
