@@ -23,6 +23,12 @@
 - name: Flush handlers
   meta: flush_handlers
 
+  # Include only when at least one item has 'sriov_en: True'
+- name: Configure SR-IOV
+  ansible.builtin.include_tasks:
+    file: "configure_sriov-{{ ansible_facts['os_family'] }}.yml"
+  when: (infiniband_hca_devices | map(attribute='sriov_en') | list) is any
+
 - name: Configure IPoIB interfaces
   ansible.builtin.include_tasks:
     file: "configure-{{ ansible_facts['os_family'] }}.yml"

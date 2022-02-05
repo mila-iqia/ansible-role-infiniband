@@ -15,3 +15,8 @@
   throttle: 1
   ansible.builtin.reboot:
     msg: "Infiniband: Reboot machine to load new configurations."
+
+- name: Restart sysfsutils
+  ansible.builtin.systemd:
+    name: sysfsutils.service
+    state: restarted

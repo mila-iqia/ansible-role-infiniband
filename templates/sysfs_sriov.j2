@@ -1,0 +1,17 @@
+#jinja2: lstrip_blocks: True
+# Ansible managed
+class/infiniband/{{ item.device }}/device/sriov_numvfs = {{ item.num_of_vfs }}
+{% for vfid in range(item.num_of_vfs) %}
+{# The VF GUID is the combination of:
+ - a global prefix
+ - the device ID
+ - the VF ID.
+#}
+{% set vfguid = infiniband_guid_prefix ~ ":00:" ~ ('%02x' | format(devid)) ~
+    ":" ~ ('%02x' | format(vfid)) %}
+class/infiniband/{{ item.device }}/device/sriov/{{ vfid }}/node = {{ vfguid }}
+class/infiniband/{{ item.device }}/device/sriov/{{ vfid }}/port = {{ vfguid }}
+  {% if item.policy is defined %}
+class/infiniband/{{ item.device }}/device/sriov/{{ vfid }}/policy = {{ item.policy }}
+  {% endif %}
+{% endfor %}

@@ -50,3 +50,19 @@ infiniband_install_kernel_modules: True
 #     pci_bus: '0000:41:00.0'
 #     sriov_en: True
 #     num_of_vfs: 8
+
+# Define the prefix to use for the 64-bits IB GUID of VFs
+# The role will define the GUID with:
+#  - prefix (40 bits)
+#  - "00" (8 bits)
+#  - device ID (8 bits): item index in list infiniband_hca_devices above
+#  - VF ID (8 bits): index of VF in range(infiniband_hca_devices[*].num_of_vfs)
+#
+# It is highly recommended to define a value different than the default if you
+# plan to configure more than one host with SR-IOV in your IB fabric.
+#
+# To allow failover in high availability configuration, make sure to use the
+# same infiniband_hca_devices and infiniband_guid_prefix for all hosts where a
+# given VM could run.
+#
+infiniband_guid_prefix: "4d:69:6c:61:00"
