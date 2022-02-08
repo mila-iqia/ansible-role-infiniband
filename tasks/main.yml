@@ -2,14 +2,14 @@
 - name: Configure repositories
   ansible.builtin.include_tasks:
     file: "repositories-{{ ansible_facts['os_family'] }}.yml"
-  when: mlnx_ofed_configure_repos
+  when: infiniband_configure_repos
 
 - name: Install MLNX_OFED kernel modules
   ansible.builtin.include_tasks:
     file: "install-{{ ansible_facts['os_family'] }}.yml"
-  when: mlnx_ofed_install_kernel_modules
+  when: infiniband_install_kernel_modules
 
-- name: Install common MLNX_OFED packages
+- name: Install common InfiniBand packages
   ansible.builtin.package:
     name:
       - infiniband-diags
