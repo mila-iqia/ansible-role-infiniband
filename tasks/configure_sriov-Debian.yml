@@ -1,0 +1,20 @@
+---
+- name: Install sysfsutils
+  ansible.builtin.package:
+    name:
+      - sysfsutils
+
+- name: Enable sysfsutils
+  ansible.builtin.systemd:
+    name: sysfsutils
+    enabled: True
+
+- name: Configure sriov_numvfs
+  ansible.builtin.template:
+    src: sysfs_sriov.j2
+    dest: "/etc/sysfs.d/{{ item.device }}_sriov.conf"
+  loop: "{{ infiniband_hca_devices }}"
+  loop_control:
+    index_var: devid
+  when: item.sriov_en
+  notify: Restart sysfsutils

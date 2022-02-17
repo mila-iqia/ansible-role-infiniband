@@ -1,0 +1,24 @@
+---
+# Template used to parse output of 'mstconfig query' with the cli_parse module.
+
+# Get the PCI bus of the device(s)
+- example: 'Device:         /sys/bus/pci/devices/0000:41:00.0/config'
+  getval: 'Device:\s+\/sys\/bus\/pci\/devices\/(?P<pci>\S+)\/'
+  result:
+    "{{ pci }}":
+        pci_bus: "{{ pci }}"
+  shared: True
+
+# Get number of VFs
+- example: '         NUM_OF_VFS                          16'
+  getval: '\s+NUM_OF_VFS\s+(?P<value>\S+)'
+  result:
+    "{{ pci }}":
+        num_of_vfs: "{{ value }}"
+
+# Get SR-IOV status
+- example: '         SRIOV_EN                            True(1)'
+  getval: '\s+SRIOV_EN\s+(?P<value>\S+)\([01]\)'
+  result:
+    "{{ pci }}":
+        sriov_en: "{{ value }}"
