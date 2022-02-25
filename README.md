@@ -19,6 +19,10 @@ Define the APT or YUM/DNF repositories, with the path to the GPG key.
     # Mellanox GPG Key
     infiniband_gpg_key: 'http://www.mellanox.com/downloads/ofed/RPM-GPG-KEY-Mellanox'
 
+To pin the priority of the repository (APT only).
+
+    infiniband_apt_priority: 490
+
 The name of the kernel headers package might change across distros. This can be
 defined with:
 

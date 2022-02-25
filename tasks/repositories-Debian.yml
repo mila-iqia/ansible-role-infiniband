@@ -10,6 +10,16 @@
     dest: /etc/apt/sources.list.d/infiniband.list
     mode: 0644
 
+- name: Configure APT preferences for InfiniBand repository
+  ansible.builtin.copy:
+    content: |
+      Package: *
+      Pin: release o=MLNX_OFED
+      Pin-Priority: {{ infiniband_apt_priority }}
+    dest: /etc/apt/preferences.d/priority-infiniband
+    mode: 0644
+  when: infiniband_apt_priority is defined
+
 - name: "Update repository cache"
   apt:
     update_cache: yes
