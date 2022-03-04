@@ -27,7 +27,8 @@
 - name: Configure SR-IOV
   ansible.builtin.include_tasks:
     file: "configure_sriov-{{ ansible_facts['os_family'] }}.yml"
-  when: (infiniband_hca_devices | map(attribute='sriov_en') | list) is any
+  when: infiniband_hca_devices is defined and
+    (infiniband_hca_devices | map(attribute='sriov_en') | list) is any
 
 - name: Configure IPoIB interfaces
   ansible.builtin.include_tasks:
