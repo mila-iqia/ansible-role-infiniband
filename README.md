@@ -94,7 +94,7 @@ could run.
 Example Playbook
 ----------------
 
-Install and configure clustershell:
+Install and configure InfiniBand:
 
     - hosts: computes:&infiniband
       roles:
