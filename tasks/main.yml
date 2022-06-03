@@ -29,10 +29,11 @@
     file: "configure_sriov-{{ ansible_facts['os_family'] }}.yml"
   when: infiniband_hca_devices is defined and
     (infiniband_hca_devices | map(attribute='sriov_en') | list) is any
+    
 - name: modeprobe ib
   ansible.builtin.include_tasks:
     file: modprobeib.yml
-  when: infiniband_ipoib_interfaces is defined
+  when: infiniband_ipoib_enhanced
 
 - name: Configure IPoIB interfaces
   ansible.builtin.include_tasks:
