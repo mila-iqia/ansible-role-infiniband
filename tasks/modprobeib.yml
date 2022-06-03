@@ -1,0 +1,24 @@
+---
+- name: disable ipoib_enhanced
+  ansible.builtin.lineinfile:
+    path: /etc/modprobe.d/ib_ipoib.conf
+    insertafter: '^alias'
+    line: options ib_ipoib ipoib_enhanced=0
+- name: stop and start service
+  ansible.builtin.service:
+    name: openibd
+    state: stopped
+- name: start service
+  ansible.builtin.service:
+    name: openibd
+    state: started
+- name: check ipoib_enhanced
+  ansible.builtin.command:
+    cmd: /usr/bin/cat /sys/module/ib_ipoib/parameters/ipoib_enhanced
+  register: pipoib_enhanced
+  failed_when: poib_enhanced.stdout != "0"
+- name: check the mode
+  ansible.builtin.command:
+    cmd: /usr/bin/cat /sys/class/net/ib0/mode
+  register: pmode
+  failed_when: pmode.stdout != "connected"
