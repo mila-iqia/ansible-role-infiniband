@@ -43,6 +43,7 @@ infiniband_kernel_headers_package: 'linux-headers'
 # such cases, the parameters below can be set to False in the host inventory.
 infiniband_configure_repos: True
 infiniband_install_kernel_modules: True
+infiniband_ipoib_enhanced: True
 
 # Configure Mellanox HCAs
 # The pci_bus must match the value in /sys/bus/pci/devices/
