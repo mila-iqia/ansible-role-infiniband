@@ -11,10 +11,10 @@ Role Variables
 Define the APT or YUM/DNF repositories, with the path to the GPG key.
 
     # Default apt repository
-    infiniband_apt_repository: 'deb https://linux.mellanox.com/public/repo/infiniband/latest/ubuntu18.04/amd64/ ./'
+    infiniband_apt_repository: 'deb https://linux.mellanox.com/public/repo/mlnx_ofed/latest/ubuntu18.04/amd64/ ./'
 
     # Default yum/dnf repository
-    infiniband_yum_repository: 'https://linux.mellanox.com/public/repo/infiniband/latest/rhel8.3/$basearch/'
+    infiniband_yum_repository: 'https://linux.mellanox.com/public/repo/mlnx_ofed/latest/rhel8.3/$basearch/'
 
     # Mellanox GPG Key
     infiniband_gpg_key: 'http://www.mellanox.com/downloads/ofed/RPM-GPG-KEY-Mellanox'
