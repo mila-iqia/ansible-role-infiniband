@@ -9,3 +9,9 @@
     label: "Configure {{ item.iface }}"
   notify: Restart interface
   register: configure_ipoib
+
+- name: Configure ipoib_enhanced
+  ansible.builtin.lineinfile:
+    path: /etc/modprobe.d/ib_ipoib_enhanced.conf
+    line: "options ib_ipoib ipoib_enhanced={{ infiniband_ipoib_enhanced | bool }}"
+  notify: Restart openibd

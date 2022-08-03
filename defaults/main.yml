@@ -69,3 +69,9 @@ infiniband_install_kernel_modules: True
 # given VM could run.
 #
 infiniband_guid_prefix: "4d:69:6c:61:00"
+
+# Configure Enhanced IPoIB
+# For ConnectX-4 and later, Mellanox recommends to keep Enhanced IPoIB enabled.
+# This parameter only has effect on RHEl-like OS. If set to False, the IPoIB
+# interfaces will default to Connected mode.
+infiniband_ipoib_enhanced: True

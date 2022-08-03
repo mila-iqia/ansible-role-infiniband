@@ -11,6 +11,11 @@
     name: openibd.service
     state: started
 
+- name: Restart openibd
+  ansible.builtin.systemd:
+    name: openibd.service
+    state: restarted
+
 - name: Reboot to load new configurations
   throttle: 1
   ansible.builtin.reboot:
