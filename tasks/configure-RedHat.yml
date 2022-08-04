@@ -11,8 +11,8 @@
   register: configure_ipoib
 
 - name: Configure ipoib_enhanced
-  ansible.builtin.lineinfile:
-    path: /etc/modprobe.d/ib_ipoib_enhanced.conf
-    line: "options ib_ipoib ipoib_enhanced={{ infiniband_ipoib_enhanced | bool | int }}"
-    create: true
+  ansible.builtin.copy:
+    dest: /etc/modprobe.d/ib_ipoib_enhanced.conf
+    content: |
+      options ib_ipoib ipoib_enhanced={{ infiniband_ipoib_enhanced | bool | int }}
   notify: Restart openibd
