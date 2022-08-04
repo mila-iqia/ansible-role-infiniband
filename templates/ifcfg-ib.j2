@@ -18,7 +18,7 @@ BOOTPROTO=static
 ONBOOT=yes
 IPV4_FAILURE_FATAL=yes
 IPV6INIT=no
-{% if not infiniband_ipoib_enhanced %}
+{% if not infiniband_ipoib_enhanced | bool %}
 MTU=65520
 CONNECTED_MODE=yes
 {% endif %}
