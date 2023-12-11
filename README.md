@@ -90,6 +90,16 @@ could run.
 
     infiniband_guid_prefix: "4d:69:6c:61:00"
 
+By default, the role will reboot the hosts to load any new configuration. It is
+possible to forbid the reboot with:
+
+    infiniband_allow_reboot: false
+
+To avoid any unexpected downtime in high availability clusters, the role will
+reboot the hosts one after the other. It is possible to increase the throttle
+with:
+
+    infiniband_throttle_reboot: "{{ ansible_play_hosts | length }}"
 
 Example Playbook
 ----------------
