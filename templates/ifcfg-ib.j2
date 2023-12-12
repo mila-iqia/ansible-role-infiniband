@@ -5,15 +5,15 @@
 3. Validate the host/prefix with ipv4 filter
 #}
 {% set ipoib_host = (ansible_facts['default_ipv4'].address |
-    ansible.netcommon.ipmath(item.offset) + '/' + item.prefix | string) |
-    ansible.netcommon.ipv4('host/prefix') -%}
+    ansible.utils.ipmath(item.offset) + '/' + item.prefix | string) |
+    ansible.utils.ipv4('host/prefix') -%}
 DEVICE={{ item.iface }}
 NAME={{ item.iface }}
 TYPE=InfiniBand
-IPADDR={{ ipoib_host | ansible.netcommon.ipaddr('address') }}
-NETMASK={{ ipoib_host | ansible.netcommon.ipaddr('netmask') }}
-NETWORK={{ ipoib_host | ansible.netcommon.ipaddr('network') }}
-BROADCAST={{ ipoib_host | ansible.netcommon.ipaddr('broadcast') }}
+IPADDR={{ ipoib_host | ansible.utils.ipaddr('address') }}
+NETMASK={{ ipoib_host | ansible.utils.ipaddr('netmask') }}
+NETWORK={{ ipoib_host | ansible.utils.ipaddr('network') }}
+BROADCAST={{ ipoib_host | ansible.utils.ipaddr('broadcast') }}
 BOOTPROTO=static
 ONBOOT=yes
 IPV4_FAILURE_FATAL=yes
