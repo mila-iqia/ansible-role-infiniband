@@ -17,9 +17,10 @@
     state: restarted
 
 - name: Reboot to load new configurations
-  throttle: 1
+  throttle: "{{ infiniband_throttle_reboot }}"
   ansible.builtin.reboot:
     msg: "Infiniband: Reboot machine to load new configurations."
+  when: infiniband_allow_reboot
 
 - name: Restart sysfsutils
   ansible.builtin.systemd:

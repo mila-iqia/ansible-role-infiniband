@@ -54,6 +54,13 @@ infiniband_install_kernel_modules: True
 #     sriov_en: True
 #     num_of_vfs: 8
 
+# Allow host reboot to load new configurations
+# If disabled, one will have to reboot later to load any new configuration
+infiniband_allow_reboot: True
+
+# Reboot the hosts one after the other
+infiniband_throttle_reboot: 1
+
 # Define the prefix to use for the 64-bits IB GUID of VFs
 # The role will define the GUID with:
 #  - prefix (40 bits)
