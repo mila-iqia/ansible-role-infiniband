@@ -1,0 +1,14 @@
+---
+- name: Ensure patch is installed
+  ansible.builtin.package:
+    name: patch
+
+- name: Patch openibd.service to unload irdma
+  ansible.posix.patch:
+    src: 'openibd_unload_irdma.patch'
+    basedir: '/etc/init.d'
+    strip: 1
+  when:
+    - infiniband_patch_irdma is defined
+    - infiniband_patch_irdma
+

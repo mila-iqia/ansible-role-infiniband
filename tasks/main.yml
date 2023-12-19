@@ -16,6 +16,11 @@
       - mstflint
       - perftest
 
+- name: Apply patches
+  ansible.builtin.include_tasks:
+    file: patch.yml
+  when: infiniband_patch
+
 - name: Configure Mellanox HCAs
   ansible.builtin.include_tasks:
     file: "configure_hca-{{ ansible_facts['os_family'] }}.yml"

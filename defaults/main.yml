@@ -82,3 +82,6 @@ infiniband_guid_prefix: "4d:69:6c:61:00"
 # This parameter only has effect on RHEl-like OS. If set to False, the IPoIB
 # interfaces will default to Connected mode.
 infiniband_ipoib_enhanced: True
+
+# Apply patches on installed files
+infiniband_patch: false
