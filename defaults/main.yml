@@ -38,6 +38,11 @@ infiniband_upgrade: False
 # Name of the kernel headers package
 infiniband_kernel_headers_package: 'linux-headers'
 
+# Flavor of mlnx-ofed-* to install.
+# Values can be `basic`, `all`, `hpc`, etc.
+# See NVIDIA MLNX_OFED documentation for a complete list of flavors.
+infiniband_mlnx_ofed_flavor: 'basic'
+
 # Default to configure the repos and install the kernel modules.
 #
 # Some appliances like the NVIDIA DGX run their own software stack. When an
