@@ -5,6 +5,7 @@
       - mlnx-ofed-kernel-dkms
       - mlnx-ofed-kernel-utils
       - "{{ infiniband_kernel_headers_package }}-{{ ansible_facts['kernel'] }}"
+    state: "{{ 'latest' if infiniband_upgrade else 'present' }}"
   register: packages_install
   notify: "Ensure openibd.service is started"
 
