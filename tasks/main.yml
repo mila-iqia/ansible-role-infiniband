@@ -4,10 +4,15 @@
     file: "repositories-{{ ansible_facts['os_family'] }}.yml"
   when: infiniband_configure_repos
 
+- name: Install MLNX_OFED
+  ansible.builtin.include_tasks:
+    file: "install-mlnx-ofed.yml"
+  when: infiniband_install_mlnx_ofed | bool
+
 - name: Install MLNX_OFED kernel modules
   ansible.builtin.include_tasks:
-    file: "install-{{ ansible_facts['os_family'] }}.yml"
-  when: infiniband_install_kernel_modules
+    file: "install-kernel-modules-{{ ansible_facts['os_family'] }}.yml"
+  when: infiniband_install_kernel_modules | bool
 
 - name: Install common InfiniBand packages
   ansible.builtin.package:

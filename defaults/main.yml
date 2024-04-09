@@ -51,6 +51,7 @@ infiniband_mlnx_ofed_flavor: 'basic'
 # such cases, the parameters below can be set to False in the host inventory.
 infiniband_configure_repos: True
 infiniband_install_kernel_modules: True
+infiniband_install_mlnx_ofed: True
 
 # Configure Mellanox HCAs
 # The pci_bus must match the value in /sys/bus/pci/devices/
