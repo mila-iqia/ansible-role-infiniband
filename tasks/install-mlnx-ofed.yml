@@ -1,5 +1,5 @@
 ---
-- name: Install MLNX_OFED packages for Red Hat OS family
+- name: Install MLNX_OFED packages
   ansible.builtin.package:
     name:
       - "mlnx-ofed-{{ infiniband_mlnx_ofed_flavor }}"
