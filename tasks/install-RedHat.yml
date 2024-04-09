@@ -4,4 +4,5 @@
     name:
       - mlnx-ofa_kernel-devel
       - kmod-mlnx-ofa_kernel
+    state: "{{ 'latest' if infiniband_upgrade else 'present' }}"
   notify: "Ensure openibd.service is started"
