@@ -2,8 +2,7 @@
 - name: Install MLNX_OFED packages for Debian OS family
   ansible.builtin.package:
     name:
-      - mlnx-ofed-kernel-dkms
-      - mlnx-ofed-kernel-utils
+      - "mlnx-ofed-{{ infiniband_mlnx_ofed_flavor }}"
       - "{{ infiniband_kernel_headers_package }}-{{ ansible_facts['kernel'] }}"
     state: "{{ 'latest' if infiniband_upgrade else 'present' }}"
   register: packages_install
