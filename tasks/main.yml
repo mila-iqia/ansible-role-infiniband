@@ -40,3 +40,8 @@
   ansible.builtin.include_tasks:
     file: "configure-{{ ansible_facts['os_family'] }}.yml"
   when: infiniband_ipoib_interfaces is defined
+
+- name: Update MLNX_OFED kernel modules
+  ansible.builtin.include_tasks:
+    file: "update-mlnx-ofed.yml"
+  when: infiniband_update_mlnx_ofed | bool
