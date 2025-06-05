@@ -52,7 +52,9 @@ infiniband_mlnx_ofed_flavor: 'basic'
 infiniband_configure_repos: True
 infiniband_install_kernel_modules: True
 infiniband_install_mlnx_ofed: True
-infiniband_update_mlnx_ofed: False
+# Ensure the mlnx-ofed-kernel kernel modules are built with DKMS
+# immediately following the kernel headers post-installation, and prior to any other modules.
+infiniband_dkms_postinst: False
 # Configure Mellanox HCAs
 # The pci_bus must match the value in /sys/bus/pci/devices/
 # e.g. /sys/bus/pci/devices/0000:41:00.0/
