@@ -1,8 +1,8 @@
 ---
  - name: Add script content
    ansible.builtin.copy:
-     dest: /etc/kernel/header_postinst.d/mlnx-ofed-kernel
-     mode: 770
+     dest: /etc/kernel/header_postinst.d/01-dkms-mlnx-ofed-kernel
+     mode: 750
      content: |
        #!/bin/bash
 
