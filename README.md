@@ -43,9 +43,10 @@ This is also true when using the kernel modules from the distro.
 
 ### Kernel upgrade
 
-Build mlnx-ofed-kernel modules with DKMS during kernel header post-installation, before any other modules.
-By default, this build process is triggered only during a kernel upgrade. 
-Therefore, the variable governing this operation is typically false by default
+Build mlnx-ofed-kernel modules with DKMS during kernel header post-installation,
+before any other modules.By default, this build process is triggered only during
+a kernel upgrade.Therefore, the variable governing this operation is typically
+false by default
     infiniband_dkms_postinst: False
 
 ### IPoIB
