@@ -40,3 +40,8 @@
   ansible.builtin.include_tasks:
     file: "configure-{{ ansible_facts['os_family'] }}.yml"
   when: infiniband_ipoib_interfaces is defined
+
+- name: Build mlnx-ofed-kernel modules
+  ansible.builtin.include_tasks:
+    file: "dkms_postinst.yml"
+  when: infiniband_dkms_postinst | bool

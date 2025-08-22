@@ -1,0 +1,19 @@
+---
+ - name: Add script content
+   ansible.builtin.copy:
+     dest: /etc/kernel/header_postinst.d/01-dkms-mlnx-ofed-kernel
+     mode: 750
+     content: |
+       #!/bin/bash
+
+       # We're passed the version of the kernel being installed
+       inst_kern=$1
+
+       uname_m=$(uname -m)
+
+       # Install mlnx-ofed-kernel first
+       for mod in $(dkms status mlnx-ofed-kernel | cut -d, -f1 | sort -u); do
+           /usr/sbin/dkms install ${mod} -k ${inst_kern}
+       done
+
+       /usr/bin/update-alternatives --set ofa_kernel_headers /usr/src/ofa_kernel/${uname_m}/${inst_kern}

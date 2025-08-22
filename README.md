@@ -41,6 +41,14 @@ This is also true when using the kernel modules from the distro.
     infiniband_configure_repos: True
     infiniband_install_kernel_modules: True
 
+### Kernel upgrade
+
+Build mlnx-ofed-kernel modules with DKMS during kernel header post-installation,
+before any other modules.This build process is triggered during a kernel upgrade.
+The variable defaults to false.
+
+    infiniband_dkms_postinst: False
+
 ### IPoIB
 
 Define the list of interfaces to configure with IPoIB. Each item of the list
