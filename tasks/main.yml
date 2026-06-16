@@ -4,7 +4,7 @@
     file: "repositories-{{ ansible_facts['os_family'] }}.yml"
   when: infiniband_configure_repos
 
-- name: Install MLNX_OFED
+- name: Install OFED
   ansible.builtin.include_tasks:
     file: "install-mlnx-ofed.yml"
   when: infiniband_install_mlnx_ofed | bool

@@ -43,6 +43,12 @@ infiniband_kernel_headers_package: 'linux-headers'
 # See NVIDIA MLNX_OFED documentation for a complete list of flavors.
 infiniband_mlnx_ofed_flavor: 'basic'
 
+# Transition from mlnx_ofed to doca_ofed
+infiniband_ofed_package: "mlnx-ofed-{{ infiniband_mlnx_ofed_flavor }}"
+infiniband_apt_pin_release: release o=MLNX_OFED
+# infiniband_ofed_package: "doca-ofed"
+# infiniband_apt_pin_release: release o=NVIDIA l=DOCA
+
 # Default to configure the repos and install the kernel modules.
 #
 # Some appliances like the NVIDIA DGX run their own software stack. When an
