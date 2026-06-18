@@ -1,7 +1,7 @@
 ---
-- name: Install MLNX_OFED packages
+- name: Install OFED packages
   ansible.builtin.package:
     name:
-      - "mlnx-ofed-{{ infiniband_mlnx_ofed_flavor }}"
+      - "{{ infiniband_ofed_package }}"
     state: "{{ 'latest' if infiniband_upgrade else 'present' }}"
   notify: "Ensure openibd.service is started"

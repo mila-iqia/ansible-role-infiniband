@@ -14,7 +14,7 @@
   ansible.builtin.copy:
     content: |
       Package: *
-      Pin: release o=MLNX_OFED
+      Pin: {{ infiniband_apt_pin_release }}
       Pin-Priority: {{ infiniband_apt_priority }}
     dest: /etc/apt/preferences.d/priority-infiniband
     mode: 0644
