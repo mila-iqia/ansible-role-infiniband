@@ -1,8 +1,15 @@
 ---
-- name: Install GPG-KEY
-  ansible.builtin.apt_key:
+- name: Download GPG key
+  ansible.builtin.get_url:
     url: "{{ infiniband_gpg_key }}"
-    keyring: /etc/apt/trusted.gpg.d/infiniband.gpg
+    dest: /etc/apt/keyrings/infiniband.asc
+    mode: '0644'
+
+- name: Install GPG Key
+  ansible.builtin.command: "gpg --dearmor -o /etc/apt/trusted.gpg.d/infiniband.gpg /etc/apt/keyrings/infiniband.asc"
+  args:
+    creates: /etc/apt/trusted.gpg.d/infiniband.gpg
+  become: true
 
 - name: Configure InfiniBand repository
   ansible.builtin.copy:
